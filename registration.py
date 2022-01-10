@@ -20,7 +20,7 @@ try:
     #TO INSERT DATA INTO USERS TABLE
     no_of_users = int(input('Enter No. Of Users: '))
     if no_of_users == 0:
-        print({'Status Code':500, 'msg': 'Requested Range Unsatisfiable!'})
+        print({'statusCode':500, 'message': 'Requested Range Unsatisfiable!'})
     else:
         for i in range(no_of_users):
             user_uid = uuid.uuid4()
@@ -29,10 +29,10 @@ try:
                 user_mail = input('Enter Your Mail ID: ')
                 j += 1
                 if user_mail in users_list:
-                    print({'Status Code':500, 'msg': 'Already in Database. Add another Email ID'})
+                    print({'statusCode':500, 'message': 'Already in Database. Add another Email ID'})
                     j -= 1
                 elif not re.search('^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$', user_mail):
-                    print({'Status Code':500, 'msg': 'Enter Valid eMail!'})
+                    print({'statusCode':500, 'message': 'Enter Valid eMail!'})
                     j -= 1
 
             k = 0
@@ -40,15 +40,15 @@ try:
                 user_pswd = input('Enter Password: ')
                 k = 1
                 if re.search('[\s]',user_pswd) or user_pswd == '' :
-                    print({'Status Code':500, 'msg': 'Try Another Way!'})
+                    print({'statusCode':500, 'message': 'Try Another Way!'})
                     k -= 1
             insert_script = ''' INSERT INTO userrv (user_id, user_email, user_password) VALUES(%s, %s, %s)'''
             insert_values = (str(user_uid), user_mail, pbkdf2_sha256.hash(user_pswd))
             cur.execute(insert_script, insert_values)
-            print({'Status Code':200, 'msg': 'Succesfully Done'})
+            print({'statusCode':200, 'message': 'Succesfully Done'})
     conn.commit()
 except Exception as error:
-    print({'Status Code':500, 'msg': 'Something Happened. Try again later.'})
+    print({'statusCode':500, 'message': 'Something Happened. Try again later.'})
 
 finally:
     if cur is not None:

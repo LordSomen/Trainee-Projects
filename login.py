@@ -28,16 +28,16 @@ try:
 
             verified = pbkdf2_sha256.verify(user_pswd_ver, db_mail_pswd[0])
             if verified == True:
-                print({'Status Code':200, 'msg': 'Verified Successfully!'})
+                print({'statusCode':200, 'message': 'Verified Successfully!'})
             else:
-                print({'Status Code':500, 'msg': 'Incorrect Password!'})
+                print({'statusCode':500, 'message': 'Incorrect Password!'})
         else:
-            print({'Status Code':500, 'msg': 'Invalid User!'})
+            print({'statusCode':500, 'message': 'Invalid User!'})
     else:
         raise Exception
     conn.commit()
 except Exception as error:
-    print({'Status Code':500, 'msg': 'Connection Failed!'})
+    print({'statusCode':500, 'message': 'Connection Failed!'})
 
 finally:
     if cur is not None:
