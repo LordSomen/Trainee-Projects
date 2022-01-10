@@ -30,9 +30,9 @@ try:
             if verified == True:
                 print({'Status Code':200, 'msg': 'Verified Successfully!'})
             else:
-                print({'Status Code':206, 'msg': 'Incorrect Password!'})
+                print({'Status Code':500, 'msg': 'Incorrect Password!'})
         else:
-            print({'Status Code':401, 'msg': 'Invalid User!'})
+            print({'Status Code':500, 'msg': 'Invalid User!'})
     else:
         raise Exception
     conn.commit()
