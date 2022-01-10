@@ -40,7 +40,7 @@ try:
                 user_pswd = input('Enter Password: ')
                 k = 1
                 if re.search('[\s]',user_pswd) or user_pswd == '' :
-                    print({'Status Code':500, 'msg': 'Try another way!'})
+                    print({'Status Code':500, 'msg': 'Try Another Way!'})
                     k -= 1
             insert_script = ''' INSERT INTO userrv (user_id, user_email, user_password) VALUES(%s, %s, %s)'''
             insert_values = (str(user_uid), user_mail, pbkdf2_sha256.hash(user_pswd))
